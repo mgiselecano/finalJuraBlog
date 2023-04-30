@@ -1,0 +1,97 @@
+{% load static %}
+
+<body>
+  <!-- ======= Header ======= -->
+  <header id="header" class="header d-flex align-items-center">
+    <div
+      class="container-fluid container-xl d-flex align-items-center justify-content-between"
+    >
+      <a href="{% url 'Inicio' %}" class="logo d-flex align-items-center">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <h1>Blog Jura<span>.</span></h1>
+      </a>
+
+      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <!-- <h4 class="navbar-msg">{{hi_msj}}</h4> -->
+          <li><a href="{% url 'Inicio' %}" class="active">Inicio</a></li>
+          <li><a href="{% url 'Lista_post' %}">Articulos</a></li>
+          <!-- <li><a href="{% url 'Crear_publicacion' %}">Publicar</a></li> -->
+          <!-- <li><a href="{% url 'Crear_autor' %}">Autores</a></li>
+                <li><a href="{% url 'Buscar_post' %}">Buscar Post</a></li>
+                <li><a href="{% url 'Buscar_autor' %}">Buscar Autor</a></li> -->
+          <li class="dropdown">
+            <a href="#"
+              ><span>Autores</span>
+              <i class="bi bi-chevron-down dropdown-indicator"></i
+            ></a>
+            <ul>
+              <li>
+                <a href="{% url 'Crear_autor' %}"> Crear Perfil del autor </a>
+              </li>
+              <li><a href="{% url 'Buscar_autor' %}">Buscar autor</a></li>
+              <li><a href="{% url 'Lista_autores' %}">Nuestros autores</a></li>
+              <li><a href="{% url 'Crear_publicacion' %}">Publicar</a></li>
+              <li><a href="{% url 'Buscar_post' %}">Buscar articulos</a></li>
+
+              <li class="dropdown">
+                <a href="#"
+                  ><span>Temas</span>
+                  <i class="bi bi-chevron-down dropdown-indicator"></i
+                ></a>
+                <ul>
+                  <li><a href="#">DAOS</a></li>
+                  <li><a href="#">Tokenizaciónd de activos</a></li>
+                  <li><a href="#">Smart Contracts</a></li>
+                  <li><a href="#">Firma digital</a></li>
+                  <li><a href="#">Programación para abogados</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><a href="{% url 'Contacto' %}">Contacto</a></li>
+          <li><a href="{% url 'Nosotros' %}">Nosotros</a></li>
+        </ul>
+      </nav>
+      <div class="d-flex">
+        {% if user.is_authenticated %}
+        <li class="nav-item d-flex align-items-center">
+          <p class="mb-0 text-white me-2">Hola {{ user.username }}</p>
+          <a href="{% url 'Subir_foto_perfil' %}">
+            {% if avatar_url %}
+            <img
+              class="rounded-circle me-2 avatar-image avatar-img"
+              height="40px"
+              src="{{ avatar_url }}"
+              alt="avatar"
+            />
+            {% else %}
+            <img
+              class="rounded-circle me-2 avatar-image"
+              height="40px"
+              src="{% static 'assets/img/graduated.png' %}"
+              alt="avatar"
+            />
+            {% endif %}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="btn btn-danger text-white p-2"
+            href="{% url 'Cerrar_sesión' %}"
+            >Cerrar sesión</a >
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="btn btn-primary" href="{% url 'Login' %}">Iniciar sesión</a>
+        </li>
+        {% endif %}
+      </div>
+    </div>
+  </header>
+  <!-- End Header -->
+</body>

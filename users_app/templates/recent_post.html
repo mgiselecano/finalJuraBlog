@@ -1,0 +1,171 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block contenidoquecambia %}
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs d-flex align-items-center mb-5" style="background-image: url({% static 'assets/img/book2.jpg' %});">
+      <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
+
+        <h2>Articulos más recientes</h2>
+        <ol>
+          <li><a href="{% url 'Inicio' %}">Inicio</a></li>
+          <li>Articulos</li>
+        </ol>
+
+      </div>
+ </div><!-- End Breadcrumbs -->
+
+{% comment %} <ul>
+   {% for post in posts %}
+       <li>
+      <a href="{% url "Leer_publicacion" post.id %}">
+
+      </a>
+          {{post}}
+       </li>
+       <div style="display: flex; column-gap: 5px;">
+        <button class="btn btn-warning">
+          <a class="text-white" href="{% url 'Editar_publicacion' post.id %}">Editar publicación</a>
+      </button>
+           <form action="{% url 'Editar_publicacion' post.id %}" method="POST">{% csrf_token %}
+               <button type="submit"> Editar publicación</button>
+           </form>
+           <button class="btn btn-danger">
+               <a class="text-white" href="{% url 'Eliminar_publicacion' post.id %}">Eliminar publicación</a>
+           </button> 
+       </div>
+   {% endfor %}
+</ul> {% endcomment %}
+
+
+<!-- ======= Blog Section ======= -->
+<section id="blog" class="blog">
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+    <div class="row gy-4 posts-list">
+
+      <!-- Iterar sobre la lista de posts en el contexto -->
+      {% for post in posts %}
+        <div class="col-xl-4 col-md-6">
+          <div class="post-item position-relative h-100">
+
+            <div class="post-img position-relative overflow-hidden">
+              <img src="{% static 'assets/img/blog/blog-1.jpg' %}" class="img-fluid" alt="">
+              <span class="post-date">{{ post.formatted_pub_date }}</span>
+            </div>
+
+            <div class="post-content d-flex flex-column">
+
+              <h3 class="post-title">{{ post.title }}</h3>
+
+              <div class="meta d-flex align-items-center">
+                <div class="d-flex align-items-center">
+                  <i class="bi bi-person"></i> <span class="ps-2">{{ post.author.author_user.username }}</span> <!-- Acceder al nombre de usuario del autor -->
+                </div>
+                <span class="px-3 text-black-50">/</span>
+                <div class="d-flex align-items-center">
+                  <i class="bi bi-folder2"></i> <span class="ps-2">{{ post.category }}</span>
+                </div>
+              </div>
+
+              <p>
+                {{ post.content|truncatewords_html:15 }}
+              </p>
+
+              <hr>
+              <a href="{% url 'Leer mas' post.pk %}" class="readmore stretched-link"><span>Leer mas...</span><i
+                  class="bi bi-arrow-right"></i></a>
+
+            </div>
+
+          </div>
+        </div><!-- End post list item -->
+      {% endfor %} <!-- Fin del bucle de iteración -->
+
+    </div>
+
+  </div>
+</section>
+
+          <!-- <div class="col-xl-4 col-md-6">
+            <div class="post-item position-relative h-100">
+
+              <div class="post-img position-relative overflow-hidden">
+                <img src= {% static "assets/img/blog/blog-2.jpg" %} class="img-fluid" alt="">
+                <span class="post-date">Abril 09</span>
+              </div>
+
+              <div class="post-content d-flex flex-column">
+
+                <h3 class="post-title">DAOS: ¿Qué son y cómo funcionan legalmente?</h3>
+
+                <div class="meta d-flex align-items-center">
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-person"></i> <span class="ps-2">Gisele Cano</span>
+                  </div>
+                  <span class="px-3 text-black-50">/</span>
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-folder2"></i> <span class="ps-2">Blockchain y sociedades</span>
+                  </div>
+                </div>
+
+                <p>
+                Las DAOS son la forma asociativa mas novedosa despues de las sociedades anónimas. 
+                </p>
+
+                <hr>
+
+              <a href= "{% url "Leer mas" %} " class="readmore stretched-link"><span>Leer mas...</span><i
+                    class="bi bi-arrow-right"></i></a>
+
+              </div>
+
+            </div> -->
+          </div><!-- End post list item -->
+
+          <!-- <div class="col-xl-4 col-md-6">
+            <div class="post-item position-relative h-100">
+
+              <div class="post-img position-relative overflow-hidden">
+                <img src= {% static "assets/img/blog/blog-3.jpg" %} class="img-fluid" alt="">
+                <span class="post-date">Abril 05</span>
+              </div>
+
+              <div class="post-content d-flex flex-column">
+
+                <h3 class="post-title">Legal Design: un nuevo enfoque en la creación de contratos.</h3>
+
+                <div class="meta d-flex align-items-center">
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-person"></i> <span class="ps-2">Gisele Cano</span>
+                  </div>
+                  <span class="px-3 text-black-50">/</span>
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-folder2"></i> <span class="ps-2">Legal Design</span>
+                  </div>
+                </div>
+
+                <p>
+                  La nueva generación de contratos, y abogados, enfocados en las personas usuarias. 
+                </p>
+
+                <hr>
+
+                <a href= "{% url "Leer mas" %} " class="readmore stretched-link"><span>Leer mas...</span><i
+                    class="bi bi-arrow-right"></i></a>
+
+              </div>
+
+            </div> -->
+          </div> 
+          <!-- End post list item -->
+
+
+
+  </main><!-- End #main -->
+
+{% endblock contenidoquecambia %}
