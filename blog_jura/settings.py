@@ -148,6 +148,6 @@ EMAIL_HOST = 'c1420268.ferozo.com'
 EMAIL_PORT = 465
 EMAIL_USE_SSL = True
 EMAIL_HOST_USER = 'info@abogadosjura.com' # correo que se va a utilizar para enviar el mensaje
-EMAIL_HOST_PASSWORD = 'jura2014ABC' # contraseña del correo
+EMAIL_HOST_PASSWORD = '' # contraseña del correo
 DEFAULT_FROM_EMAIL = 'info@abogadosjura.com'
 DEFAULT_TO_EMAIL = 'info@abogadosjura.com'
